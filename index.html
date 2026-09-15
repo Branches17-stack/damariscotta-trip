@@ -63,7 +63,7 @@
   .mk.house{width:38px;height:38px;background:var(--buoy)}
   .mk.house svg{width:22px;height:22px}
   .mk.thu{background:var(--thu)}.mk.fri{background:var(--fri)}.mk.sat{background:var(--sat)}.mk.sun{background:var(--sun)}.mk.spot{background:var(--ink)}.mk.ramp{background:var(--spruce);border-radius:6px}
-  .zl{font-family:var(--sans);font-size:12px;font-weight:600;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.6);white-space:nowrap}
+  .zl{font-family:var(--sans);font-size:12.5px;font-weight:700;letter-spacing:.02em;color:#fff;background:rgba(22,50,79,.78);padding:3px 8px;border-radius:3px;white-space:nowrap;transform:translate(-50%,-50%)}
 
   /* schedule */
   .day{display:grid;grid-template-columns:82px 1fr;gap:0 14px;padding:10px 0;border-top:1px solid var(--rule)}
@@ -142,12 +142,13 @@
 <div class="panel map on" id="p-map">
   <div class="mapwrap">
     <div id="routeMap" class="lmap"></div>
-    <div class="legend"><i style="background:var(--thu)"></i>Thu<br><i style="background:var(--fri)"></i>Fri<br><i style="background:var(--sat)"></i>Sat<br><i style="background:var(--buoy)"></i>House</div>
+    <div class="legend"><i style="background:var(--thu)"></i>Thu<br><i style="background:var(--fri)"></i>Fri<br><i style="background:var(--sat)"></i>Sat<br><i style="background:var(--buoy)"></i>House<br><i style="background:#2E7FA6;border-radius:2px;width:14px;height:5px"></i>Maiden Cliff<br><i style="background:#3F5F4A;border-radius:2px;width:14px;height:5px"></i>Bald Rock</div>
     <div class="fly">
       <button data-fly="bgr">Bangor</button>
       <button data-fly="house">Quanahawasset</button>
       <button data-fly="alna">Alna</button>
       <button data-fly="oxbow">Oxbow</button>
+      <button data-fly="hikes">Hikes</button>
       <button data-fly="camden">Camden</button>
       <button data-fly="bay">Penobscot Bay</button>
       <button data-fly="all" class="alt">Everything</button>
@@ -178,7 +179,7 @@
 
   <h3 class="d sat">Saturday, September 19</h3>
   <div class="day"><div class="t">7:30 to 8:00 AM</div><div class="b"><strong>Leave for Camden Hills</strong><p>About 50 minutes to the trailhead.</p></div></div>
-  <div class="day"><div class="t">9:00 AM</div><div class="b"><strong>Hike</strong><p>Maiden Cliff: Route 52 trailhead, 1.9 mi round trip, 635 ft gain, 1 to 1.5 hrs, Megunticook Lake from the cliff. Or Bald Rock: Ski Lodge Rd trailhead, 3.3 mi loop, 830 ft gain, 1.5 to 2 hrs, Penobscot Bay from the top. Cash for the park fee.</p></div></div>
+  <div class="day"><div class="t">9:00 AM</div><div class="b"><strong>Hike</strong><p><b>Maiden Cliff</b>: lot 2.8 mi up Route 52, across from Barrett Cove. 1 mile up, steep in spots, 700 ft of gain, 2 mi round trip or 2.6 mi as a loop. View drops straight to Megunticook Lake. 1 to 1.5 hrs. <b>Bald Rock</b>: Youngtown Rd lot off Route 173 in Lincolnville. 1.3 mi of gravel multi-use trail then 0.5 mi up to the 1,107 ft summit, 3.6 mi out and back, gentler grade. View is Penobscot Bay and the islands you'll boat past that afternoon. 1.5 to 2 hrs. Both are drawn on the map. Cash for the honor box.</p></div></div>
   <div class="day"><div class="t">Noon</div><div class="b"><strong>Lunch, Camden or Rockport</strong><p>Camden: Waterfront (40 Bayview St), Long Grain (20 Washington St, book ahead), Camden Deli (37 Main St, fastest). Rockport: Nina June on the harbor.</p></div></div>
   <div class="day"><div class="t">1:30 PM</div><div class="b"><strong>Rockport Harbor, Bellflower</strong><p>Cast off for North Haven. About an hour across.</p></div></div>
   <div class="day"><div class="t">2:30 PM</div><div class="b"><strong>North Haven</strong><p>Tie up at the public dock or grab a mooring. Walk the village. Calderwood Hall, 2 Iron Point Rd, for pizza and North Haven Brewing beer. <span class="tbd">Fall Saturday hours unconfirmed, call 207-867-4700 first.</span> Fallback: North Haven Inn &amp; Market, or dinner on the mainland.</p></div></div>
@@ -196,7 +197,7 @@
 <!-- LAKE -->
 <div class="panel" id="p-lake"><div class="inner">
   <h2>Damariscotta Lake</h2>
-  <p class="sub">About 4,400 acres, 10 miles long, 21 miles of shoreline. Mean depth 30 ft, max 114 ft. Three basins, two fisheries.</p>
+  <p class="sub">4,381 acres, 10 miles long, 21 miles of shoreline. Mean depth 30 ft, max 114 ft. Three basins, two fisheries. Figures from the Maine IF&amp;W survey.</p>
 
   <div class="mapwrap" style="height:56vh;min-height:360px;border:1px solid var(--rule);border-radius:4px;overflow:hidden;margin-bottom:6px">
     <div id="lakeMap" class="lmap"></div>
@@ -206,14 +207,20 @@
       <button data-lake="south">South basin</button>
       <button data-lake="all" class="alt">Whole lake</button>
       <button id="lakeSat" class="alt">Map</button>
+      <a href="https://www.maine.gov/ifw/docs/lake-survey-maps/lincoln/damariscotta_lake.pdf" target="_blank" rel="noopener" style="flex:0 0 auto;font-family:var(--sans);font-weight:600;font-size:14px;color:#fff;background:var(--ink);padding:8px 12px;border-radius:20px;text-decoration:none;box-shadow:0 1px 3px rgba(0,0,0,.12)">IF&amp;W depth map</a>
     </div>
   </div>
-  <p id="houseNote" style="font-family:var(--sans);font-size:13.5px;color:var(--ink-soft)">House pin is approximate. Drag it to the right cove and it prints the coordinates.</p>
+  <p id="houseNote" style="font-family:var(--sans);font-size:13.5px;color:var(--ink-soft)">House pin set from the Bird Lane address. Drag it if the dock is off.</p>
 
   <h3>How the lake is built</h3>
-  <p>The north basin, where the house sits, is the deep one: 114 feet in the middle, steep rocky shoreline, and it holds the coldwater fish. Damariscotta Lake State Park is on its northeast shore and Davis Stream feeds it from the north.</p>
-  <p>A narrows drops you into the middle basin, 46 feet at most, with a scatter of islands and the big western arm called Muscongus Bay. This is the bass water, and it's why the lake hosts club tournaments all summer.</p>
-  <p>The south basin is a long, narrow, weedy arm, 34 feet at the deepest, running down to the outlet at Damariscotta Mills. Largemouth, pickerel, and perch live here.</p>
+  <table>
+    <tr><th>Basin</th><th>Area</th><th>Max depth</th><th>August survey temps</th><th>Character</th></tr>
+    <tr><td>North</td><td>2,129 acres</td><td>114 ft</td><td>73°F surface, 45°F at 110 ft</td><td>Deep, rocky, coldwater. The house, the state park, Davis Stream.</td></tr>
+    <tr><td>Middle</td><td>1,463 acres</td><td>80 ft</td><td>73°F surface, 53°F at 59 ft</td><td>Islands, points, the Muscongus Bay arm. Bass water.</td></tr>
+    <tr><td>South</td><td>789 acres</td><td>38 ft</td><td>76°F surface, 48°F at 35 ft</td><td>Narrow, weedy arm down to the outlet at Damariscotta Mills.</td></tr>
+  </table>
+  <p>The middle basin is deeper than it looks from shore. Eighty feet of water with 53°F at sixty means salmon and togue use it too, not just the north basin. Bass hold on the edges where that deep water comes up against the islands.</p>
+  <p>Two things from the survey worth knowing. Largemouth were never stocked; they got in through an unauthorized introduction in the early 1980s and settled in the shallow south basin. And the lake is the breeding ground for one of the biggest alewife runs in Maine, over 100,000 fish in 1995, which is why the bass and salmon here eat so well. IF&amp;W's own line is that the bass fishery probably contributes more to the fishing than every other species combined.</p>
 
   <h3>What's in it</h3>
   <div class="species">
@@ -223,11 +230,13 @@
     <div><span class="mult">x½</span><b>Chain pickerel</b>Weed lines. Spinners and streamers.</div>
     <div><span class="mult">x2</span><b>Landlocked salmon</b>North basin, stocked. Troll streamers.</div>
     <div><span class="mult">x2</span><b>Brown trout</b>North basin, stocked since 1993.</div>
-    <div><span class="mult">x2</span><b>Lake trout (togue)</b>North basin, stocked since 1972. Deep hole off the state park.</div>
+    <div><span class="mult">x2</span><b>Lake trout (togue)</b>Stocked annually since the 1972 experiment worked. North and middle basin deep water.</div>
+    <div><span class="mult">x½</span><b>Yellow perch, hornpout</b>Also in the lake per the survey. Count at half if anyone bothers.</div>
   </div>
+  <p style="font-size:14.5px;color:var(--ink-soft)">Forage: rainbow smelt, golden shiners, fallfish, sea-run alewives. Also present: white sucker, banded killifish, pumpkinseed, American eel.</p>
 
   <h3>What late September does to the fish</h3>
-  <p>Surface temperature is 69 to 71°F and dropping a degree or two a week. The summer thermocline in the north basin is starting to break down, which pulls salmon, browns, and togue out of the 40 to 60 foot band and into reachable water, especially at first light and in wind. It's early for the fall turnover but the trend is in your favor.</p>
+  <p>Surface temperature is 69 to 71°F and dropping a degree or two a week. The August survey found 53°F at 59 feet in the middle basin and 45°F at 110 feet in the north basin, so the coldwater fish spend summer well below reach on light gear. As the surface cools the thermocline breaks down and salmon, browns, and togue push up into the 20 to 40 foot band, especially at first light and in wind. It's early for the full fall turnover but the trend is in your favor.</p>
   <p>Smallmouth are in their fall feeding push. Smelt and young alewives are schooled up along points and drop-offs, and the bass sit on the first break below them, usually 8 to 20 feet. They're aggressive and they group up, so when you find one there are more.</p>
   <p>Largemouth are still tight to green weed in the south basin. Weed dies off from the shallows out, so the outside edge of the healthiest weed is the line to work.</p>
 
@@ -255,7 +264,7 @@
   <h3>Licenses and limits</h3>
   <ul>
     <li>Non-resident, online at <a href="https://www.maine.gov/ifw">maine.gov/ifw</a>: 1-day $18, 3-day $30, 7-day $62, plus agent fee. Buy before Friday, keep a copy on your phone.</li>
-    <li>General law: bass 2 per day, only 1 over 14 in. Salmon 2 per day, 14 in minimum. Togue 2 per day, 18 in minimum. Lakes open through September 30. Check the Damariscotta Lake listing for special rules.</li>
+    <li>Damariscotta Lake does not appear in the IF&amp;W special fishing laws list, so South Zone general law applies: open year-round, bass 2 per day with only 1 over 14 in, salmon 2 per day at 14 in minimum, togue 2 per day at 18 in minimum. Confirm in the current lawbook before keeping anything.</li>
     <li>Tightlines Tackle, 60 School St, Damariscotta, 207-563-2944, for anything you're short on and for bait.</li>
   </ul>
 </div></div>
@@ -435,16 +444,16 @@
   function dir(ll){ return '<br><small><a href="https://www.google.com/maps/dir/?api=1&destination='+ll[0]+','+ll[1]+'" target="_blank" rel="noopener">Directions</a></small>'; }
 
   /* ---------- ROUTE MAP ---------- */
-  var HOUSE=[44.182,-69.470];
+  var HOUSE=[44.1866,-69.4795];
   var pts={
     bgr:     {ll:[44.8074,-68.8281],c:'thu',g:'plane', t:'Bangor International',  d:'Thursday arrivals, Sunday departures. About 1 hour 30 to the house via Belfast and Route 17.'},
-    house:   {ll:HOUSE,             c:'house',g:'house',t:'Quanahawasset',        d:'54 Bird Lane, Jefferson. Pin is approximate. In after 4 PM, out by 10:30 AM.'},
+    house:   {ll:HOUSE,             c:'house',g:'house',t:'Quanahawasset',        d:'54 Bird Lane, Jefferson. In after 4 PM, out by 10:30 AM.'},
     hann:    {ll:[44.0955,-69.3855],c:'thu',g:'cart',  t:'Hannaford, Waldoboro',  d:'Supply run, 10 minutes from the house.'},
     tight:   {ll:[44.0335,-69.5197],c:'thu',g:'hook',  t:'Tightlines Tackle',     d:'60 School St, Damariscotta. Bait and anything you\'re short on. Call for hours.'},
     alna:    {ll:[44.0919,-69.6130],c:'thu',g:'food',  t:'The Alna Store',        d:'Thursday 8:00 PM, table for 4. About 30 minutes from the house.'},
     oxbow:   {ll:[44.0596,-69.5666],c:'fri',g:'beer',  t:'Oxbow Brewing',         d:'Friday from 5. Live music 6 to 8, Banyan Tree Indian truck. 20 minutes from the house.'},
-    maiden:  {ll:[44.2513,-69.1156],c:'sat',g:'hike',  t:'Maiden Cliff trailhead',d:'Route 52 at Megunticook Lake. 1.9 mi round trip, 635 ft.'},
-    bald:    {ll:[44.2596,-69.0563],c:'sat',g:'hike',  t:'Bald Rock trailhead',   d:'Ski Lodge Rd, Lincolnville. 3.3 mi loop, 830 ft, bay views.'},
+    maiden:  {ll:[44.2471,-69.0875],c:'sat',g:'hike',  t:'Maiden Cliff trailhead',d:'Lot on the right, 2.8 mi up Route 52 from Route 1, across from Barrett Cove beach. About 14 cars; overflow on the road.'},
+    bald:    {ll:[44.2803,-69.0448],c:'sat',g:'hike',  t:'Bald Rock trailhead',   d:'Youngtown Rd lot, just off Route 173 in Lincolnville. Walk around the gate onto the multi-use trail. Honor box for the park fee.'},
     camden:  {ll:[44.2098,-69.0648],c:'sat',g:'food',  t:'Camden',                d:'Lunch: Waterfront, Long Grain, Camden Deli. 8 Bells at 45 Mechanic St after the boat.'},
     rockport:{ll:[44.1845,-69.0714],c:'sat',g:'anchor',t:'Rockport Harbor',       d:'Bellflower. Cast off about 1:30 PM. An hour to North Haven.'},
     calder:  {ll:[44.1262,-68.8760],c:'sat',g:'food',  t:'Calderwood Hall',       d:'2 Iron Point Rd, North Haven. Pizza and North Haven Brewing. Saturday fall hours unconfirmed, call 207-867-4700. Leave the dock by 5:45.'}
@@ -452,6 +461,16 @@
   var rm=L.map('routeMap',{zoomControl:false}); L.control.zoom({position:'topleft'}).addTo(rm);
   var rOsm=osm().addTo(rm), rSat=sat(), rIsSat=false, markers={};
   Object.keys(pts).forEach(function(k){ var p=pts[k]; markers[k]=L.marker(p.ll,{icon:icon(p.c,p.g)}).addTo(rm).bindPopup('<b>'+p.t+'</b><br>'+p.d+dir(p.ll)); });
+  /* hikes */
+  var MC=[[44.2471,-69.0875],[44.2490,-69.0880],[44.2512,-69.0888],[44.2530,-69.0895],[44.2540,-69.0898]];
+  var MCloop=[[44.2540,-69.0898],[44.2552,-69.0870],[44.2535,-69.0845],[44.2512,-69.0860],[44.2490,-69.0880]];
+  var BR=[[44.2803,-69.0448],[44.2782,-69.0420],[44.2760,-69.0400],[44.2735,-69.0388],[44.2714,-69.0382],[44.2695,-69.0400],[44.2680,-69.0420],[44.2671,-69.0435]];
+  var mcStyle={color:'#2E7FA6',weight:5,opacity:.9}, brStyle={color:'#3F5F4A',weight:5,opacity:.9};
+  L.polyline(MC,mcStyle).addTo(rm).bindPopup('<b>Maiden Cliff</b><br>Short and steep. About 1 mile up through hardwoods and ledge to the cliff, 700 ft of gain, back the same way for 2 miles or add the Scenic and Ridge trails for a 2.6 mile loop. Payoff is the drop-off view over Megunticook Lake with the hills behind. 1 to 1.5 hours.');
+  L.polyline(MCloop,{color:'#2E7FA6',weight:3,opacity:.7,dashArray:'6 5'}).addTo(rm).bindPopup('<b>Scenic and Ridge trails</b><br>Optional loop back from the cliff, 0.6 mile longer, rougher footing.');
+  L.polyline(BR,brStyle).addTo(rm).bindPopup('<b>Bald Rock Mountain</b><br>Longer and gentler. 1.3 miles of wide gravel multi-use trail, then 0.5 mile of real trail up to the 1,107 ft summit. About 3.6 miles out and back, 600 to 700 ft of gain, 1.5 to 2 hours. Payoff is the open ledge looking straight out over Penobscot Bay to Islesboro and the islands you\'ll be boating past that afternoon.');
+  L.marker([44.2540,-69.0898],{icon:L.divIcon({className:'',html:'<div class="zl" style="background:#2E7FA6">Maiden Cliff · lake view</div>',iconSize:[0,0]}),interactive:false}).addTo(rm);
+  L.marker([44.2671,-69.0435],{icon:L.divIcon({className:'',html:'<div class="zl" style="background:#3F5F4A">Bald Rock · bay view</div>',iconSize:[0,0]}),interactive:false}).addTo(rm);
   var road={color:'#4A6178',weight:3,opacity:.65,dashArray:'2 7'};
   L.polyline([pts.bgr.ll,[44.62,-68.93],[44.43,-69.01],[44.34,-69.15],[44.26,-69.30],[44.21,-69.40],HOUSE],{color:'#4A6178',weight:3,opacity:.65}).addTo(rm);
   L.polyline([HOUSE,pts.alna.ll],road).addTo(rm);
@@ -467,6 +486,7 @@
     house:function(){rm.flyTo(HOUSE,13);},
     alna:function(){rm.flyTo(pts.alna.ll,13);},
     oxbow:function(){rm.flyTo(pts.oxbow.ll,13);},
+    hikes:function(){rm.flyToBounds(L.latLngBounds([[44.244,-69.095],[44.283,-69.030]]).pad(0.15));},
     camden:function(){rm.flyToBounds(L.latLngBounds([pts.maiden.ll,pts.bald.ll,pts.rockport.ll]).pad(0.2));},
     bay:function(){rm.flyToBounds(L.latLngBounds([pts.rockport.ll,pts.calder.ll]).pad(0.25));},
     all:function(){rm.flyToBounds(everything.getBounds().pad(0.1));}
@@ -480,22 +500,19 @@
   /* ---------- LAKE MAP ---------- */
   var lm=L.map('lakeMap',{zoomControl:false}); L.control.zoom({position:'topleft'}).addTo(lm);
   var lOsm=osm(), lSat=sat().addTo(lm), lIsSat=true;
-  function zone(ll,r,color,label){
-    L.circle(ll,{radius:r,color:color,weight:1.5,fillColor:color,fillOpacity:.14,dashArray:'4 4'}).addTo(lm);
-    L.marker(ll,{icon:L.divIcon({className:'',html:'<div class="zl">'+label+'</div>',iconSize:[0,0],iconAnchor:[-8,-r/60]}),interactive:false}).addTo(lm);
-  }
-  zone([44.196,-69.452],1500,'#9FBFCC','North basin: deep, coldwater');
-  zone([44.152,-69.472],1300,'#F0B429','Islands: smallmouth');
-  zone([44.072,-69.502],1100,'#7DBE7A','South basin: weeds');
+  function zl(ll,label){ L.marker(ll,{icon:L.divIcon({className:'',html:'<div class="zl">'+label+'</div>',iconSize:[0,0],iconAnchor:[0,0]}),interactive:false}).addTo(lm); }
+  zl([44.187,-69.4905],'North basin · deep, coldwater');
+  zl([44.146,-69.4835],'Middle basin · islands, smallmouth');
+  zl([44.052,-69.516],'South basin · weeds');
   var spots=[
-    {ll:[44.2035,-69.4535],c:'spot',g:'hike',  t:'Damariscotta Lake State Park', d:'Beach, kayak put-in on the north basin.'},
-    {ll:[44.1990,-69.4450],c:'spot',g:'fish',  t:'Togue hole',                   d:'Deep water off the park. Troll streamers or spoons at first light. Approximate.'},
-    {ll:[44.2110,-69.4590],c:'spot',g:'fish',  t:'Davis Stream mouth',           d:'Shore fishing at the north end. Bait stacks up here.'},
-    {ll:[44.1520,-69.4720],c:'spot',g:'fish',  t:'Middle basin islands',         d:'Smallmouth on the windward points and first drop-off, 8 to 20 ft.'},
-    {ll:[44.1400,-69.4900],c:'spot',g:'fish',  t:'Muscongus Bay arm',            d:'Rocky points at the mouth, then weed further in. Mixed bag.'},
-    {ll:[44.0700,-69.5000],c:'spot',g:'fish',  t:'South basin weed edges',       d:'Largemouth, pickerel, perch on the outside edge of green weed.'},
+    {ll:[44.1915,-69.4636],c:'spot',g:'hike',  t:'Damariscotta Lake State Park', d:'Beach, kayak put-in on the north basin.'},
+    {ll:[44.1799,-69.4819],c:'spot',g:'fish',  t:'Togue hole',                   d:'114 ft in the middle of the north basin. Troll streamers or spoons at first light.'},
+    {ll:[44.1980,-69.4750],c:'spot',g:'fish',  t:'Davis Stream mouth',           d:'Shore fishing at the north end. Bait stacks up here.'},
+    {ll:[44.1535,-69.4796],c:'spot',g:'fish',  t:'Middle basin islands',         d:'Smallmouth on the windward points and first drop-off, 8 to 20 ft. The basin goes to 80 ft, so salmon and togue run here too.'},
+    {ll:[44.1387,-69.4915],c:'spot',g:'fish',  t:'Muscongus Bay arm',            d:'Rocky points at the mouth, then weed further in. Mixed bag.'},
+    {ll:[44.0580,-69.5090],c:'spot',g:'fish',  t:'South basin weed edges',       d:'Largemouth, pickerel, perch on the outside edge of green weed.'},
     {ll:[44.1283,-69.4996],c:'ramp',g:'ramp',  t:'Route 213 ramp',               d:'State concrete ramp, free, good parking.'},
-    {ll:[44.2160,-69.4560],c:'spot',g:'market',t:'Jefferson Market',             d:'Sandwiches, breakfast. Reachable by boat. Approximate.'}
+    {ll:[44.2020,-69.4660],c:'spot',g:'market',t:'Jefferson Market',             d:'Sandwiches, breakfast. Reachable by boat. Approximate.'}
   ];
   spots.forEach(function(p){ L.marker(p.ll,{icon:icon(p.c,p.g)}).addTo(lm).bindPopup('<b>'+p.t+'</b><br>'+p.d); });
   var houseM=L.marker(HOUSE,{icon:icon('house','house'),draggable:true}).addTo(lm).bindPopup('<b>Quanahawasset</b><br>Drag me to the right cove.');
@@ -503,7 +520,7 @@
     var ll=e.target.getLatLng(); HOUSE=[ll.lat,ll.lng]; markers.house.setLatLng(ll);
     document.getElementById('houseNote').textContent='House pin set to '+ll.lat.toFixed(4)+', '+ll.lng.toFixed(4)+'. Send those back and it gets locked in.';
   });
-  var lviews={north:[[44.195,-69.455],14],mid:[[44.15,-69.475],14],south:[[44.07,-69.50],14],all:[[44.14,-69.475],12]};
+  var lviews={north:[[44.186,-69.478],14],mid:[[44.15,-69.482],14],south:[[44.055,-69.512],14],all:[[44.12,-69.49],12]};
   document.querySelectorAll('[data-lake]').forEach(function(b){ b.addEventListener('click',function(){ var v=lviews[b.dataset.lake]; lm.flyTo(v[0],v[1]); }); });
   document.getElementById('lakeSat').addEventListener('click',function(){
     lIsSat=!lIsSat; if(lIsSat){lm.removeLayer(lOsm);lSat.addTo(lm);this.textContent='Map';} else {lm.removeLayer(lSat);lOsm.addTo(lm);this.textContent='Satellite';}
