@@ -164,7 +164,7 @@
   <h3 class="d thu">Thursday, September 17</h3>
   <div class="day"><div class="t">Morning</div><div class="b"><strong>Clint lands, BGR</strong><p>Matt picks up. If Jeff's early flight works out, grab both and do the supply run closer to the lake.</p></div></div>
   <div class="day"><div class="t">Midday</div><div class="b"><strong>Supplies</strong><p>Beer, ice, coolers, food. Hannaford or Shaw's in Bangor if there's a gap between flights, otherwise the Waldoboro Hannaford, 10 minutes from the house.</p></div></div>
-  <div class="day"><div class="t">Afternoon</div><div class="b"><strong>Jeff lands, BGR</strong><p>Then south. About 2 hours to Jefferson.</p></div></div>
+  <div class="day"><div class="t">Afternoon</div><div class="b"><strong>Jeff lands, BGR</strong><p>Then south. About 1 hour 30 to Jefferson via Belfast and Route 17.</p></div></div>
   <div class="day"><div class="t">4:00 PM</div><div class="b"><strong>Check in</strong><p>Unload, stage rods and boats for the morning. Tightlines Tackle in Damariscotta is 15 minutes away if anything's missing.</p></div></div>
   <div class="day"><div class="t">7:25 PM</div><div class="b"><strong>Leave for Alna</strong><p>About 30 minutes.</p></div></div>
   <div class="day"><div class="t">8:00 PM</div><div class="b"><strong>The Alna Store</strong><p>2 Dock Rd, Alna. Reservation confirmed, table for 4. Seasonal New American, local beer, natural wine. James Beard semifinalist 2024, NYT top 50 restaurants 2024.</p></div></div>
@@ -188,7 +188,7 @@
   <h3 class="d sun">Sunday, September 20</h3>
   <div class="day"><div class="t">10:30 AM</div><div class="b"><strong>Out of the house</strong><p>Strip beds, bag trash, ladder up, door locked.</p></div></div>
   <div class="day"><div class="t"><span class="tbd">TBD</span></div><div class="b"><strong>Breakfast on the way</strong></div></div>
-  <div class="day"><div class="t"><span class="tbd">TBD</span></div><div class="b"><strong>Departures, BGR</strong><p>Two hours from the house. At the airport 90 minutes before the first flight.</p></div></div>
+  <div class="day"><div class="t"><span class="tbd">TBD</span></div><div class="b"><strong>Departures, BGR</strong><p>About 1 hour 30 from the house. At the airport 90 minutes before the first flight.</p></div></div>
 
   <div class="note">Saturday's crossing is the one thing weather can cancel. Check NWS marine zone ANZ151 Saturday morning and buoy 44033 for live conditions. Small craft advisory, wind over 15 to 18 knots, seas over 2 to 3 feet, or fog: shorten it or skip it.</div>
 </div></div>
@@ -437,7 +437,7 @@
   /* ---------- ROUTE MAP ---------- */
   var HOUSE=[44.182,-69.470];
   var pts={
-    bgr:     {ll:[44.8074,-68.8281],c:'thu',g:'plane', t:'Bangor International',  d:'Thursday arrivals, Sunday departures. About 2 hours to the house.'},
+    bgr:     {ll:[44.8074,-68.8281],c:'thu',g:'plane', t:'Bangor International',  d:'Thursday arrivals, Sunday departures. About 1 hour 30 to the house via Belfast and Route 17.'},
     house:   {ll:HOUSE,             c:'house',g:'house',t:'Quanahawasset',        d:'54 Bird Lane, Jefferson. Pin is approximate. In after 4 PM, out by 10:30 AM.'},
     hann:    {ll:[44.0955,-69.3855],c:'thu',g:'cart',  t:'Hannaford, Waldoboro',  d:'Supply run, 10 minutes from the house.'},
     tight:   {ll:[44.0335,-69.5197],c:'thu',g:'hook',  t:'Tightlines Tackle',     d:'60 School St, Damariscotta. Bait and anything you\'re short on. Call for hours.'},
@@ -453,7 +453,7 @@
   var rOsm=osm().addTo(rm), rSat=sat(), rIsSat=false, markers={};
   Object.keys(pts).forEach(function(k){ var p=pts[k]; markers[k]=L.marker(p.ll,{icon:icon(p.c,p.g)}).addTo(rm).bindPopup('<b>'+p.t+'</b><br>'+p.d+dir(p.ll)); });
   var road={color:'#4A6178',weight:3,opacity:.65,dashArray:'2 7'};
-  L.polyline([pts.bgr.ll,[44.53,-69.05],[44.31,-69.78],[44.24,-69.53],HOUSE],{color:'#4A6178',weight:3,opacity:.65}).addTo(rm);
+  L.polyline([pts.bgr.ll,[44.62,-68.93],[44.43,-69.01],[44.34,-69.15],[44.26,-69.30],[44.21,-69.40],HOUSE],{color:'#4A6178',weight:3,opacity:.65}).addTo(rm);
   L.polyline([HOUSE,pts.alna.ll],road).addTo(rm);
   L.polyline([HOUSE,pts.oxbow.ll],road).addTo(rm);
   L.polyline([HOUSE,[44.10,-69.39],[44.12,-69.20],pts.camden.ll],road).addTo(rm);
