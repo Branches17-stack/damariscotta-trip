@@ -101,6 +101,16 @@
   .sc .totals{display:grid;grid-template-columns:1fr 1fr;gap:4px 14px;font-size:14.5px;border-top:2px solid var(--ink);padding-top:8px}
   .sc .totals .big{grid-column:1/-1;font-size:22px;font-weight:700}
   .contacts td:first-child{white-space:normal}
+  .chart{background:#E9E4CF;border:1px solid var(--rule);border-radius:4px;overflow:hidden;margin-bottom:14px}
+  .chart svg{display:block;width:100%;height:auto;max-height:78vh}
+  .zone{cursor:pointer}
+  .zone.on circle,.zone.on ellipse{fill-opacity:.14;stroke-width:2;stroke-dasharray:5 4}
+  .zbar{display:flex;flex-wrap:wrap;gap:6px;padding:10px;background:#fff;border-top:1px solid var(--rule)}
+  .zbar button,.zbar .dm{font-family:var(--sans);font-weight:600;font-size:14px;color:var(--ink);background:#fff;border:1px solid var(--rule);padding:7px 12px;border-radius:20px;cursor:pointer;text-decoration:none}
+  .zbar button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .zbar .dm{background:var(--paper)}
+  .zcard{padding:12px 14px;background:#fff;border-top:1px solid var(--rule);font-size:15px;line-height:1.5}
+  .zcard b{font-family:var(--sans);font-size:16px}
 
   @media(min-width:700px){
     :root{--hdr:72px;--tabs:48px}
@@ -142,7 +152,7 @@
 <div class="panel map on" id="p-map">
   <div class="mapwrap">
     <div id="routeMap" class="lmap"></div>
-    <div class="legend"><i style="background:var(--thu)"></i>Thu<br><i style="background:var(--fri)"></i>Fri<br><i style="background:var(--sat)"></i>Sat<br><i style="background:var(--buoy)"></i>House<br><i style="background:#2E7FA6;border-radius:2px;width:14px;height:5px"></i>Maiden Cliff<br><i style="background:#3F5F4A;border-radius:2px;width:14px;height:5px"></i>Bald Rock</div>
+    <div class="legend"><i style="background:var(--thu)"></i>Thu<br><i style="background:var(--fri)"></i>Fri<br><i style="background:var(--sat)"></i>Sat<br><i style="background:var(--buoy)"></i>House<br><i style="background:#2E7FA6;border-radius:2px;width:14px;height:5px"></i>Maiden Cliff<br><i style="background:#3F5F4A;border-radius:2px;width:14px;height:5px"></i>Bald Mountain</div>
     <div class="fly">
       <button data-fly="bgr">Bangor</button>
       <button data-fly="house">Quanahawasset</button>
@@ -179,7 +189,7 @@
 
   <h3 class="d sat">Saturday, September 19</h3>
   <div class="day"><div class="t">7:30 to 8:00 AM</div><div class="b"><strong>Leave for Camden Hills</strong><p>About 50 minutes to the trailhead.</p></div></div>
-  <div class="day"><div class="t">9:00 AM</div><div class="b"><strong>Hike</strong><p><b>Maiden Cliff</b>: lot 2.8 mi up Route 52, across from Barrett Cove. 1 mile up, steep in spots, 700 ft of gain, 2 mi round trip or 2.6 mi as a loop. View drops straight to Megunticook Lake. 1 to 1.5 hrs. <b>Bald Rock</b>: Youngtown Rd lot off Route 173 in Lincolnville. 1.3 mi of gravel multi-use trail then 0.5 mi up to the 1,107 ft summit, 3.6 mi out and back, gentler grade. View is Penobscot Bay and the islands you'll boat past that afternoon. 1.5 to 2 hrs. Both are drawn on the map. Cash for the honor box.</p></div></div>
+  <div class="day"><div class="t">9:00 AM</div><div class="b"><strong>Hike</strong><p><b>Maiden Cliff</b>: lot 2.8 mi up Route 52, across from Barrett Cove. 1 mile up, steep in spots, 700 ft of gain, 2 mi round trip or 2.6 mi as a loop. View drops straight to Megunticook Lake. 1 to 1.5 hrs. <b>Bald Mountain</b>: Bald Mountain Preserve lot at 325 Barnestown Rd, 3.5 mi out past the Snow Bowl. 2.6 to 2.8 mi round trip, 700 ft of gain, one steep ledge scramble near the top, 1 to 1.75 hrs. Treeless 1,280 ft summit with west Penobscot Bay and Ragged Mountain in view. No fee. Both are drawn on the map. Maiden Cliff has an honor box.</p></div></div>
   <div class="day"><div class="t">Noon</div><div class="b"><strong>Lunch, Camden or Rockport</strong><p>Camden: Waterfront (40 Bayview St), Long Grain (20 Washington St, book ahead), Camden Deli (37 Main St, fastest). Rockport: Nina June on the harbor.</p></div></div>
   <div class="day"><div class="t">1:30 PM</div><div class="b"><strong>Rockport Harbor, Bellflower</strong><p>Cast off for North Haven. About an hour across.</p></div></div>
   <div class="day"><div class="t">2:30 PM</div><div class="b"><strong>North Haven</strong><p>Tie up at the public dock or grab a mooring. Walk the village. Calderwood Hall, 2 Iron Point Rd, for pizza and North Haven Brewing beer. <span class="tbd">Fall Saturday hours unconfirmed, call 207-867-4700 first.</span> Fallback: North Haven Inn &amp; Market, or dinner on the mainland.</p></div></div>
@@ -197,20 +207,89 @@
 <!-- LAKE -->
 <div class="panel" id="p-lake"><div class="inner">
   <h2>Damariscotta Lake</h2>
-  <p class="sub">4,381 acres, 10 miles long, 21 miles of shoreline. Mean depth 30 ft, max 114 ft. Three basins, two fisheries. Figures from the Maine IF&amp;W survey.</p>
+  <p class="sub">4,381 acres, 10 miles long, 21 miles of shoreline. Mean depth 30 ft, max 114 ft. Three basins, two fisheries. Chart drawn from the Maine IF&amp;W survey.</p>
 
-  <div class="mapwrap" style="height:56vh;min-height:360px;border:1px solid var(--rule);border-radius:4px;overflow:hidden;margin-bottom:6px">
-    <div id="lakeMap" class="lmap"></div>
-    <div class="fly">
-      <button data-lake="north">North basin</button>
-      <button data-lake="mid">Islands</button>
-      <button data-lake="south">South basin</button>
-      <button data-lake="all" class="alt">Whole lake</button>
-      <button id="lakeSat" class="alt">Map</button>
-      <a href="https://www.maine.gov/ifw/docs/lake-survey-maps/lincoln/damariscotta_lake.pdf" target="_blank" rel="noopener" style="flex:0 0 auto;font-family:var(--sans);font-weight:600;font-size:14px;color:#fff;background:var(--ink);padding:8px 12px;border-radius:20px;text-decoration:none;box-shadow:0 1px 3px rgba(0,0,0,.12)">IF&amp;W depth map</a>
+  <div class="chart">
+    <svg id="lakeChart" viewBox="0 0 600 1000" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schematic depth chart of Damariscotta Lake">
+      <defs>
+        <pattern id="wv" width="26" height="9" patternUnits="userSpaceOnUse"><path d="M0 4.5 Q6.5 0 13 4.5 T26 4.5" fill="none" stroke="#B9D0DB" stroke-width=".8"/></pattern>
+        <pattern id="weed" width="14" height="14" patternUnits="userSpaceOnUse"><path d="M3 12 q3 -6 0 -11 M9 13 q3 -6 0 -11" fill="none" stroke="#3F7A4A" stroke-width="1.2" opacity=".55"/></pattern>
+      </defs>
+      <rect width="600" height="1000" fill="#E9E4CF"/>
+      <!-- lake -->
+      <path id="lakeBody" d="M300 58 C345 52 392 64 420 96 C452 132 466 178 456 226 C446 274 412 306 372 330 C348 344 330 356 322 378 C316 394 330 404 352 412 C392 426 424 462 428 512 C432 558 410 600 378 626 C360 640 344 656 336 676 C330 692 322 706 306 712 C288 720 268 712 250 700 C226 686 206 668 190 646 C176 628 150 622 124 620 C98 618 78 602 74 580 C70 556 92 540 118 536 C150 530 186 538 214 528 C236 520 248 500 244 476 C240 446 224 424 216 400 C210 380 226 366 250 360 C272 354 284 342 282 322 C280 296 246 282 214 268 C176 252 156 218 160 178 C164 128 210 82 260 66 C274 62 288 60 300 58 Z" fill="#D7E6EC" stroke="#8FB3C3" stroke-width="2"/>
+      <path d="M300 58 C345 52 392 64 420 96 C452 132 466 178 456 226 C446 274 412 306 372 330 C348 344 330 356 322 378 C316 394 330 404 352 412 C392 426 424 462 428 512 C432 558 410 600 378 626 C360 640 344 656 336 676 C330 692 322 706 306 712 C288 720 268 712 250 700 C226 686 206 668 190 646 C176 628 150 622 124 620 C98 618 78 602 74 580 C70 556 92 540 118 536 C150 530 186 538 214 528 C236 520 248 500 244 476 C240 446 224 424 216 400 C210 380 226 366 250 360 C272 354 284 342 282 322 C280 296 246 282 214 268 C176 252 156 218 160 178 C164 128 210 82 260 66 C274 62 288 60 300 58 Z" fill="url(#wv)"/>
+      <!-- south arm -->
+      <path id="southArm" d="M306 712 C318 740 320 780 306 820 C296 850 284 880 272 910 C262 936 250 954 240 968 C230 980 214 978 210 964 C204 944 218 920 226 896 C238 860 246 826 250 790 C254 760 254 736 250 700 Z" fill="#D7E6EC" stroke="#8FB3C3" stroke-width="2"/>
+      <path d="M306 712 C318 740 320 780 306 820 C296 850 284 880 272 910 C262 936 250 954 240 968 C230 980 214 978 210 964 C204 944 218 920 226 896 C238 860 246 826 250 790 C254 760 254 736 250 700 Z" fill="url(#wv)"/>
+      <!-- weed bands, south basin and Muscongus -->
+      <path d="M252 730 C262 760 262 800 250 840 C244 860 236 880 228 900 L216 896 C228 870 236 840 240 810 C244 780 244 756 240 736 Z" fill="url(#weed)"/>
+      <path d="M296 736 C306 760 306 800 294 840 C288 856 282 872 276 888 L288 890 C296 866 302 840 306 812 C312 780 310 756 304 736 Z" fill="url(#weed)"/>
+      <path d="M96 560 C120 552 150 556 178 560 L176 576 C150 574 122 572 100 580 Z" fill="url(#weed)"/>
+      <!-- contours north -->
+      <path d="M298 98 C338 92 378 108 400 140 C424 176 428 222 408 260 C392 290 350 306 312 300 C270 292 232 262 226 222 C220 176 250 106 298 98 Z" fill="#C4DAE3" stroke="#8FB3C3" stroke-width="1"/>
+      <path d="M302 132 C334 128 366 146 380 176 C396 210 390 250 366 270 C344 288 306 284 282 268 C256 250 250 212 262 178 C272 150 286 134 302 132 Z" fill="#AECBD8" stroke="#8FB3C3" stroke-width="1"/>
+      <path d="M308 168 C328 166 348 180 354 200 C360 224 350 248 330 254 C310 260 288 246 284 224 C280 200 292 170 308 168 Z" fill="#94B8C9" stroke="#8FB3C3" stroke-width="1"/>
+      <!-- contours middle -->
+      <path d="M362 428 C392 442 412 474 410 512 C408 548 386 580 356 596 C330 610 300 600 288 578 C276 556 292 528 314 508 C334 490 340 448 362 428 Z" fill="#C4DAE3" stroke="#8FB3C3" stroke-width="1"/>
+      <path d="M368 462 C388 476 396 504 390 530 C384 556 364 574 344 578 C322 582 306 566 306 546 C306 520 326 500 342 486 C352 476 358 464 368 462 Z" fill="#AECBD8" stroke="#8FB3C3" stroke-width="1"/>
+      <!-- contour south -->
+      <path d="M278 740 C288 770 288 810 276 846 C270 866 262 884 254 900 L244 894 C254 870 262 844 266 816 C270 788 270 762 266 742 Z" fill="#C4DAE3" stroke="#8FB3C3" stroke-width="1"/>
+      <!-- islands -->
+      <g fill="#E9E4CF" stroke="#8FB3C3" stroke-width="1.2">
+        <ellipse cx="330" cy="462" rx="12" ry="7"/><ellipse cx="352" cy="500" rx="8" ry="13"/><ellipse cx="300" cy="490" rx="7" ry="5"/><ellipse cx="386" cy="548" rx="6" ry="9"/>
+      </g>
+      <!-- streams -->
+      <path d="M300 58 C296 40 302 24 300 8" fill="none" stroke="#8FB3C3" stroke-width="3"/>
+      <path d="M212 970 C206 986 200 994 196 1000" fill="none" stroke="#8FB3C3" stroke-width="3"/>
+      <!-- depth numbers -->
+      <g font-family="Archivo Narrow, Arial Narrow, sans-serif" font-size="11" fill="#16324F">
+        <text x="318" y="216" text-anchor="middle" font-weight="700" font-size="13">114</text>
+        <text x="372" y="262">60</text><text x="404" y="290">30</text>
+        <text x="352" y="536" text-anchor="middle" font-weight="700" font-size="13">80</text><text x="396" y="590">30</text>
+        <text x="266" y="812" text-anchor="middle" font-weight="700" font-size="13">38</text>
+      </g>
+      <!-- clickable zones -->
+      <g id="zones" font-family="Archivo Narrow, Arial Narrow, sans-serif" font-size="12" font-weight="700" fill="#fff">
+        <g class="zone" data-z="north"><circle cx="310" cy="210" r="112" fill="#16324F" fill-opacity="0" stroke="#16324F" stroke-width="0" /></g>
+        <g class="zone" data-z="islands"><circle cx="340" cy="510" r="96" fill="#16324F" fill-opacity="0" stroke="#16324F" stroke-width="0"/></g>
+        <g class="zone" data-z="muscongus"><ellipse cx="150" cy="578" rx="86" ry="48" fill="#16324F" fill-opacity="0" stroke="#16324F" stroke-width="0"/></g>
+        <g class="zone" data-z="south"><ellipse cx="262" cy="820" rx="60" ry="150" fill="#16324F" fill-opacity="0" stroke="#16324F" stroke-width="0"/></g>
+      </g>
+      <!-- place labels -->
+      <g font-family="Source Serif 4, Georgia, serif" font-size="14" font-style="italic" fill="#4A6178">
+        <text x="300" y="34" text-anchor="middle" font-size="12">Davis Stream</text>
+        <text x="482" y="150">North basin</text><text x="482" y="166" font-size="11" font-style="normal" font-family="Archivo Narrow, Arial Narrow, sans-serif">2,129 acres · 114 ft</text>
+        <text x="448" y="470">Middle basin</text><text x="448" y="486" font-size="11" font-style="normal" font-family="Archivo Narrow, Arial Narrow, sans-serif">1,463 acres · 80 ft</text>
+        <text x="88" y="520" font-size="12">Muscongus Bay</text>
+        <text x="340" y="800">South basin</text><text x="340" y="816" font-size="11" font-style="normal" font-family="Archivo Narrow, Arial Narrow, sans-serif">789 acres · 38 ft</text>
+        <text x="196" y="992" text-anchor="end" font-size="12">Damariscotta Mills</text>
+        <text x="60" y="90">Jefferson</text><text x="470" y="700">Nobleboro</text><text x="60" y="880">Newcastle</text>
+      </g>
+      <!-- spots -->
+      <g font-family="Archivo Narrow, Arial Narrow, sans-serif" font-size="13" fill="#16324F">
+        <circle cx="172" cy="206" r="9" fill="#C8412B" stroke="#fff" stroke-width="2"/>
+        <text x="158" y="200" text-anchor="end" font-weight="700" font-size="15">Quanahawasset</text><text x="158" y="215" text-anchor="end" font-size="11" fill="#4A6178">west shore, sunset side</text>
+        <circle cx="426" cy="112" r="6" fill="#16324F"/><text x="436" y="108" font-weight="600">State Park</text><text x="436" y="122" font-size="11" fill="#4A6178">NE corner, beach put-in</text>
+        <circle cx="318" cy="230" r="6" fill="#16324F"/><text x="330" y="236" font-weight="600">Togue hole</text>
+        <circle cx="300" cy="68" r="5" fill="#16324F"/><text x="312" y="80" font-weight="600">Stream mouth</text>
+        <circle cx="340" cy="86" r="5" fill="#16324F"/><text x="350" y="98" font-weight="600" font-size="12">Jefferson Market</text>
+        <circle cx="322" cy="480" r="6" fill="#16324F"/><text x="230" y="450" font-weight="600">Spectacle Islands</text><text x="230" y="464" font-size="11" fill="#4A6178">smallmouth, points, 8 to 20 ft</text>
+        <rect x="200" y="596" width="11" height="11" fill="#3F5F4A" stroke="#fff" stroke-width="1.5"/><text x="194" y="610" text-anchor="end" font-weight="600">Route 213 ramp</text>
+        <circle cx="240" cy="840" r="6" fill="#16324F"/><text x="230" y="866" text-anchor="end" font-weight="600">Weed edges</text><text x="230" y="880" text-anchor="end" font-size="11" fill="#4A6178">largemouth, pickerel, perch</text>
+      </g>
+      <g transform="translate(548,946)" font-family="Archivo Narrow, Arial Narrow, sans-serif" fill="#16324F"><line x1="0" y1="24" x2="0" y2="-24" stroke="#16324F" stroke-width="2"/><path d="M0 -28 L6 -12 L0 -16 L-6 -12 Z" fill="#16324F"/><text x="0" y="-34" text-anchor="middle" font-size="13" font-weight="700">N</text></g>
+      <text x="16" y="988" font-family="Archivo Narrow, Arial Narrow, sans-serif" font-size="10.5" fill="#4A6178">Depths in feet from the Maine IF&amp;W survey. Schematic, not to scale, not for navigation.</text>
+    </svg>
+    <div class="zbar">
+      <button data-zone="north">North basin</button>
+      <button data-zone="islands">Islands</button>
+      <button data-zone="muscongus">Muscongus Bay</button>
+      <button data-zone="south">South basin</button>
+      <a href="https://www.maine.gov/ifw/docs/lake-survey-maps/lincoln/damariscotta_lake.pdf" target="_blank" rel="noopener" class="dm">IF&amp;W depth map</a>
     </div>
+    <div class="zcard" id="zcard"><b>Tap a basin</b> on the chart or a button for what lives there and how to fish it Friday.</div>
   </div>
-  <p id="houseNote" style="font-family:var(--sans);font-size:13.5px;color:var(--ink-soft)">House pin set from the Bird Lane address. Drag it if the dock is off.</p>
 
   <h3>How the lake is built</h3>
   <table>
@@ -453,7 +532,7 @@
     alna:    {ll:[44.0919,-69.6130],c:'thu',g:'food',  t:'The Alna Store',        d:'Thursday 8:00 PM, table for 4. About 30 minutes from the house.'},
     oxbow:   {ll:[44.0596,-69.5666],c:'fri',g:'beer',  t:'Oxbow Brewing',         d:'Friday from 5. Live music 6 to 8, Banyan Tree Indian truck. 20 minutes from the house.'},
     maiden:  {ll:[44.2471,-69.0875],c:'sat',g:'hike',  t:'Maiden Cliff trailhead',d:'Lot on the right, 2.8 mi up Route 52 from Route 1, across from Barrett Cove beach. About 14 cars; overflow on the road.'},
-    bald:    {ll:[44.2803,-69.0448],c:'sat',g:'hike',  t:'Bald Rock trailhead',   d:'Youngtown Rd lot, just off Route 173 in Lincolnville. Walk around the gate onto the multi-use trail. Honor box for the park fee.'},
+    bald:    {ll:[44.2185,-69.1318],c:'sat',g:'hike',  t:'Bald Mountain trailhead', d:'Bald Mountain Preserve lot, 325 Barnestown Rd. From Camden take John St to Hosmer Pond Rd, past the Snow Bowl, 3.5 mi total; lot on the left just past Gillette Rd, at the height of land between Ragged and Bald. No fee.'},
     camden:  {ll:[44.2098,-69.0648],c:'sat',g:'food',  t:'Camden',                d:'Lunch: Waterfront, Long Grain, Camden Deli. 8 Bells at 45 Mechanic St after the boat.'},
     rockport:{ll:[44.1845,-69.0714],c:'sat',g:'anchor',t:'Rockport Harbor',       d:'Bellflower. Cast off about 1:30 PM. An hour to North Haven.'},
     calder:  {ll:[44.1262,-68.8760],c:'sat',g:'food',  t:'Calderwood Hall',       d:'2 Iron Point Rd, North Haven. Pizza and North Haven Brewing. Saturday fall hours unconfirmed, call 207-867-4700. Leave the dock by 5:45.'}
@@ -464,13 +543,13 @@
   /* hikes */
   var MC=[[44.2471,-69.0875],[44.2490,-69.0880],[44.2512,-69.0888],[44.2530,-69.0895],[44.2540,-69.0898]];
   var MCloop=[[44.2540,-69.0898],[44.2552,-69.0870],[44.2535,-69.0845],[44.2512,-69.0860],[44.2490,-69.0880]];
-  var BR=[[44.2803,-69.0448],[44.2782,-69.0420],[44.2760,-69.0400],[44.2735,-69.0388],[44.2714,-69.0382],[44.2695,-69.0400],[44.2680,-69.0420],[44.2671,-69.0435]];
+  var BR=[[44.2185,-69.1318],[44.2205,-69.1325],[44.2228,-69.1335],[44.2250,-69.1345],[44.2272,-69.1358],[44.2296,-69.1365]];
   var mcStyle={color:'#2E7FA6',weight:5,opacity:.9}, brStyle={color:'#3F5F4A',weight:5,opacity:.9};
   L.polyline(MC,mcStyle).addTo(rm).bindPopup('<b>Maiden Cliff</b><br>Short and steep. About 1 mile up through hardwoods and ledge to the cliff, 700 ft of gain, back the same way for 2 miles or add the Scenic and Ridge trails for a 2.6 mile loop. Payoff is the drop-off view over Megunticook Lake with the hills behind. 1 to 1.5 hours.');
   L.polyline(MCloop,{color:'#2E7FA6',weight:3,opacity:.7,dashArray:'6 5'}).addTo(rm).bindPopup('<b>Scenic and Ridge trails</b><br>Optional loop back from the cliff, 0.6 mile longer, rougher footing.');
-  L.polyline(BR,brStyle).addTo(rm).bindPopup('<b>Bald Rock Mountain</b><br>Longer and gentler. 1.3 miles of wide gravel multi-use trail, then 0.5 mile of real trail up to the 1,107 ft summit. About 3.6 miles out and back, 600 to 700 ft of gain, 1.5 to 2 hours. Payoff is the open ledge looking straight out over Penobscot Bay to Islesboro and the islands you\'ll be boating past that afternoon.');
+  L.polyline(BR,brStyle).addTo(rm).bindPopup('<b>Bald Mountain</b><br>Coastal Mountains Land Trust preserve, not the state park. 2.6 to 2.8 miles round trip, about 700 ft of gain, 1 to 1.75 hours. Starts flat, settles into a steady climb, then one steep ledge scramble near the top that is slick when wet. The summit at 1,280 ft is treeless, one of the biggest subalpine heath tops on the coast, with west Penobscot Bay, the Snow Bowl, and Ragged Mountain all in view. Hawks migrate past in September.');
   L.marker([44.2540,-69.0898],{icon:L.divIcon({className:'',html:'<div class="zl" style="background:#2E7FA6">Maiden Cliff · lake view</div>',iconSize:[0,0]}),interactive:false}).addTo(rm);
-  L.marker([44.2671,-69.0435],{icon:L.divIcon({className:'',html:'<div class="zl" style="background:#3F5F4A">Bald Rock · bay view</div>',iconSize:[0,0]}),interactive:false}).addTo(rm);
+  L.marker([44.2296,-69.1365],{icon:L.divIcon({className:'',html:'<div class="zl" style="background:#3F5F4A">Bald Mountain · bald summit, bay view</div>',iconSize:[0,0]}),interactive:false}).addTo(rm);
   var road={color:'#4A6178',weight:3,opacity:.65,dashArray:'2 7'};
   L.polyline([pts.bgr.ll,[44.62,-68.93],[44.43,-69.01],[44.34,-69.15],[44.26,-69.30],[44.21,-69.40],HOUSE],{color:'#4A6178',weight:3,opacity:.65}).addTo(rm);
   L.polyline([HOUSE,pts.alna.ll],road).addTo(rm);
@@ -486,7 +565,7 @@
     house:function(){rm.flyTo(HOUSE,13);},
     alna:function(){rm.flyTo(pts.alna.ll,13);},
     oxbow:function(){rm.flyTo(pts.oxbow.ll,13);},
-    hikes:function(){rm.flyToBounds(L.latLngBounds([[44.244,-69.095],[44.283,-69.030]]).pad(0.15));},
+    hikes:function(){rm.flyToBounds(L.latLngBounds([[44.212,-69.145],[44.262,-69.075]]).pad(0.12));},
     camden:function(){rm.flyToBounds(L.latLngBounds([pts.maiden.ll,pts.bald.ll,pts.rockport.ll]).pad(0.2));},
     bay:function(){rm.flyToBounds(L.latLngBounds([pts.rockport.ll,pts.calder.ll]).pad(0.25));},
     all:function(){rm.flyToBounds(everything.getBounds().pad(0.1));}
@@ -497,35 +576,20 @@
   });
   rm.fitBounds(core.getBounds().pad(0.12));
 
-  /* ---------- LAKE MAP ---------- */
-  var lm=L.map('lakeMap',{zoomControl:false}); L.control.zoom({position:'topleft'}).addTo(lm);
-  var lOsm=osm(), lSat=sat().addTo(lm), lIsSat=true;
-  function zl(ll,label){ L.marker(ll,{icon:L.divIcon({className:'',html:'<div class="zl">'+label+'</div>',iconSize:[0,0],iconAnchor:[0,0]}),interactive:false}).addTo(lm); }
-  zl([44.187,-69.4905],'North basin · deep, coldwater');
-  zl([44.146,-69.4835],'Middle basin · islands, smallmouth');
-  zl([44.052,-69.516],'South basin · weeds');
-  var spots=[
-    {ll:[44.1915,-69.4636],c:'spot',g:'hike',  t:'Damariscotta Lake State Park', d:'Beach, kayak put-in on the north basin.'},
-    {ll:[44.1799,-69.4819],c:'spot',g:'fish',  t:'Togue hole',                   d:'114 ft in the middle of the north basin. Troll streamers or spoons at first light.'},
-    {ll:[44.1980,-69.4750],c:'spot',g:'fish',  t:'Davis Stream mouth',           d:'Shore fishing at the north end. Bait stacks up here.'},
-    {ll:[44.1535,-69.4796],c:'spot',g:'fish',  t:'Middle basin islands',         d:'Smallmouth on the windward points and first drop-off, 8 to 20 ft. The basin goes to 80 ft, so salmon and togue run here too.'},
-    {ll:[44.1387,-69.4915],c:'spot',g:'fish',  t:'Muscongus Bay arm',            d:'Rocky points at the mouth, then weed further in. Mixed bag.'},
-    {ll:[44.0580,-69.5090],c:'spot',g:'fish',  t:'South basin weed edges',       d:'Largemouth, pickerel, perch on the outside edge of green weed.'},
-    {ll:[44.1283,-69.4996],c:'ramp',g:'ramp',  t:'Route 213 ramp',               d:'State concrete ramp, free, good parking.'},
-    {ll:[44.2020,-69.4660],c:'spot',g:'market',t:'Jefferson Market',             d:'Sandwiches, breakfast. Reachable by boat. Approximate.'}
-  ];
-  spots.forEach(function(p){ L.marker(p.ll,{icon:icon(p.c,p.g)}).addTo(lm).bindPopup('<b>'+p.t+'</b><br>'+p.d); });
-  var houseM=L.marker(HOUSE,{icon:icon('house','house'),draggable:true}).addTo(lm).bindPopup('<b>Quanahawasset</b><br>Drag me to the right cove.');
-  houseM.on('dragend',function(e){
-    var ll=e.target.getLatLng(); HOUSE=[ll.lat,ll.lng]; markers.house.setLatLng(ll);
-    document.getElementById('houseNote').textContent='House pin set to '+ll.lat.toFixed(4)+', '+ll.lng.toFixed(4)+'. Send those back and it gets locked in.';
-  });
-  var lviews={north:[[44.186,-69.478],14],mid:[[44.15,-69.482],14],south:[[44.055,-69.512],14],all:[[44.12,-69.49],12]};
-  document.querySelectorAll('[data-lake]').forEach(function(b){ b.addEventListener('click',function(){ var v=lviews[b.dataset.lake]; lm.flyTo(v[0],v[1]); }); });
-  document.getElementById('lakeSat').addEventListener('click',function(){
-    lIsSat=!lIsSat; if(lIsSat){lm.removeLayer(lOsm);lSat.addTo(lm);this.textContent='Map';} else {lm.removeLayer(lSat);lOsm.addTo(lm);this.textContent='Satellite';}
-  });
-  lm.setView(lviews.all[0],lviews.all[1]);
+  /* ---------- LAKE CHART ---------- */
+  var Z={
+    north:'<b>North basin</b> · 2,129 acres, 114 ft, 45°F at the bottom in August. The deep, rocky basin out the front door of the house. Salmon, browns, and togue live here all summer below the thermocline and start climbing toward 20 to 40 ft as the surface cools. Friday morning in the rain: work the rocky points either side of the dock with jigs, and put one rod out trolling a streamer or small spoon on long line if a boat is moving anywhere. The togue hole is the 114 ft mark in the middle; go deep and slow there. Davis Stream at the north tip stacks bait and is the one good shore spot.',
+    islands:'<b>Middle basin and the Spectacle Islands</b> · 1,463 acres, 80 ft, 53°F at 59 ft. This is the bass water. Smallmouth sit on the windward points of each island and the first drop-off below the bait, 8 to 20 ft. Drag a tube or Ned rig along the bottom, switch to a drop shot when you find the depth. The basin goes to 80 ft, so salmon and togue use it too, especially the edges where deep water comes up against rock. Highest-percentage water on the lake for a scoring day.',
+    muscongus:'<b>Muscongus Bay</b> · the western arm off the middle basin. Rocky points at the mouth hold smallmouth; further in it shallows and weeds up and turns into pickerel, perch, and the occasional largemouth. A south or southwest wind pushes bait onto its north-facing shore, so fish the bank the wind is blowing into. The Route 213 state ramp is on the west shore just below it if anyone trailers a boat.',
+    south:'<b>South basin</b> · 789 acres, 38 ft, 76°F on the surface in August. The long narrow weedy arm running down to the outlet at Damariscotta Mills. Largemouth, pickerel, and perch on the outside edge of the healthiest green weed; weed dies off from the shallows out, so the edge is the line. Texas-rigged worms, spinnerbaits along the weed line, a frog or popper over the pads at first light. The afternoon numbers play if the island bite goes flat.'
+  };
+  function setZone(k){
+    document.querySelectorAll('.zone').forEach(function(g){ g.classList.toggle('on',g.dataset.z===k); });
+    document.querySelectorAll('.zbar button').forEach(function(b){ b.classList.toggle('on',b.dataset.zone===k); });
+    document.getElementById('zcard').innerHTML=Z[k];
+  }
+  document.querySelectorAll('.zone').forEach(function(g){ g.addEventListener('click',function(){ setZone(g.dataset.z); }); });
+  document.querySelectorAll('.zbar button').forEach(function(b){ b.addEventListener('click',function(){ setZone(b.dataset.zone); }); });
 
   /* ---------- TABS ---------- */
   var nav=document.querySelectorAll('#nav button');
@@ -533,12 +597,11 @@
     nav.forEach(function(b){ b.classList.toggle('on',b.dataset.p===id); });
     document.querySelectorAll('.panel').forEach(function(p){ p.classList.toggle('on',p.id==='p-'+id); });
     if(id==='map') setTimeout(function(){ rm.invalidateSize(); },50);
-    if(id==='lake') setTimeout(function(){ lm.invalidateSize(); },50);
     try{ history.replaceState(null,'','#'+id); }catch(e){}
   }
   nav.forEach(function(b){ b.addEventListener('click',function(){ show(b.dataset.p); }); });
   var h=location.hash.replace('#',''); if(h && document.getElementById('p-'+h)) show(h);
-  window.addEventListener('resize',function(){ rm.invalidateSize(); lm.invalidateSize(); });
+  window.addEventListener('resize',function(){ rm.invalidateSize(); });
 
   /* ---------- SCORECARD ---------- */
   var book={Matt:[],Jeff:[],Clint:[]}, cur='Matt', firstFishBy=null;
